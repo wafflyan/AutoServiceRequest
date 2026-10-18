@@ -9,7 +9,7 @@ import java.util.Objects;
  * @param normMinutes нормо-минуты
  * @param hourRate цена одного нормо-часа
  */
-public record LaborJob(WorkType type, String description, int normMinutes, Money hourRate) {
+public record LaborJob(WorkType type, String description, int normMinutes, Money hourRate) implements Job {
 
     /**
      * Проверяет поля
@@ -27,7 +27,7 @@ public record LaborJob(WorkType type, String description, int normMinutes, Money
         }
         description = description.strip();
     }
-
+    @Override
     public Money cost() {
         long total = Math.multiplyExact(hourRate.kopecks(), (long) normMinutes);
         return new Money((total + 30) / 60);

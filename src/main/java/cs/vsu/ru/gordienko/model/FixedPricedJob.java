@@ -5,7 +5,7 @@ import java.util.Objects;
 /**
  * Работа с фиксированной ценой, к примеру диагностика.
  */
-public record FixedPricedJob(WorkType type, String description, int normMinutes, Money price) {
+public record FixedPricedJob(WorkType type, String description, int normMinutes, Money price) implements Job {
 
     public FixedPricedJob{
         Objects.requireNonNull(type, "Вид работ не задан");
@@ -22,6 +22,7 @@ public record FixedPricedJob(WorkType type, String description, int normMinutes,
     /**
      * Стоимость = фиксированная цена
      */
+    @Override
     public Money cost() {
         return price;
     }
