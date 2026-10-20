@@ -40,6 +40,9 @@ public record Money(long kopecks) {
         return new Money(Math.addExact(kopecks, other.kopecks));
     }
 
+    public Money plus(Money other) {
+        return new Money(Math.addExact(kopecks, other.kopecks));
+    }
     @Override
     public String toString() {
         return "%d,%02d руб".formatted(kopecks / 100, kopecks % 100);
